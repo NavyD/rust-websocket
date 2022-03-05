@@ -3,6 +3,7 @@
 use std::fmt::Arguments;
 use std::io::{self, Read, Write};
 
+// 对所有实现了Read+Write的struct自动实现Stream trait
 /// Represents a stream that can be read from, and written to.
 /// This is an abstraction around readable and writable things to be able
 /// to speak websockets over ssl, tcp, unix sockets, etc.

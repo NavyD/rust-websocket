@@ -155,6 +155,7 @@ pub trait IntoWs {
 	fn into_ws(self) -> Result<Upgrade<Self::Stream>, Self::Error>;
 }
 
+// 对所有实现了Stream的struct自动实现IntoWs
 impl<S> IntoWs for S
 where
 	S: Stream,
