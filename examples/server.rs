@@ -8,6 +8,7 @@ fn main() {
 	let server = Server::bind("127.0.0.1:2794").unwrap();
 
 	for request in server.filter_map(Result::ok) {
+		// 未完成upgrade的http request. type: WsUpgrade<S, Option<Buffer>>
 		// Spawn a new thread for each connection.
 		thread::spawn(|| {
 			if !request.protocols().contains(&"rust-websocket".to_string()) {

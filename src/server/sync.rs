@@ -240,6 +240,7 @@ impl WsServer<NoTlsAcceptor, TcpListener> {
 			}
 		};
 
+		// 升级tcp->http->未完成的WS
 		match stream.into_ws() {
 			Ok(u) => Ok(u),
 			Err((s, r, b, e)) => Err(InvalidConnection {

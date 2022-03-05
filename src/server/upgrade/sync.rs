@@ -162,10 +162,13 @@ where
 	type Stream = S;
 	type Error = (S, Option<Request>, Option<Buffer>, HyperIntoWsError);
 
+	/// 解析tcp为http协议后升级为WsUpgrade未完成的WS
 	fn into_ws(self) -> Result<Upgrade<Self::Stream>, Self::Error> {
 		let mut reader = BufReader::new(self);
+		// get http request
 		let request = parse_request(&mut reader);
 
+		// 分离reader的stream与剩下的buffer
 		let (stream, buf, pos, cap) = reader.into_parts();
 		let buffer = Some(Buffer { buf, cap, pos });
 

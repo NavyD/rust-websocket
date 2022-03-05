@@ -60,6 +60,9 @@ pub extern crate websocket_base;
 #[cfg(all(feature = "nightly", test))]
 extern crate test;
 
+/// `(expr; type; {Some(pat) => some_match, None => default})`
+///
+/// 如果headers中存在header时执行some_match。否则设置headers为默认的expr
 macro_rules! upsert_header {
 	($headers:expr; $header:ty;  { Some($pat:pat) => $some_match:expr,None => $default:expr }) => {{
 		if $headers.has::<$header>() {

@@ -134,7 +134,7 @@ where
 	}
 
 	#[cfg(feature = "sync")]
-	fn send(&mut self, status: StatusCode) -> io::Result<()> {
+	fn send(&mut self, status: StatusCode) -> io::Result<()> { 
 		let data = format!(
 			"{} {}\r\n{}\r\n",
 			self.request.version, status, self.headers
